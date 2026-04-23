@@ -1,0 +1,291 @@
+:root {
+    --primary-bg: #0f172a;
+    --accent-color: #38bdf8;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(16px);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--primary-bg);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 30%, #1e293b 0%, #0f172a 100%);
+    z-index: -1;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Header */
+.glass-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+}
+
+.location-info h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+}
+
+.location-info p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 100px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-color);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Main Card */
+.main-card {
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.weather-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.temp-group {
+    display: flex;
+    align-items: flex-start;
+}
+
+#current-temp {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.05em;
+}
+
+.unit {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-top: 0.75rem;
+    color: var(--text-muted);
+}
+
+.condition-group {
+    text-align: right;
+}
+
+#weather-icon-large {
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+#weather-icon-large svg {
+    width: 64px;
+    height: 64px;
+}
+
+#weather-description {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 2rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.detail-item svg {
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+}
+
+.detail-item .label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.detail-item span:last-child {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* Forecast */
+.section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+}
+
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+}
+
+.forecast-item {
+    padding: 1.25rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.forecast-item .time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.forecast-item .temp {
+    font-weight: 600;
+}
+
+.forecast-item svg {
+    width: 24px;
+    height: 24px;
+    color: var(--accent-color);
+}
+
+/* Footer */
+footer {
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+/* Ghost Loading */
+.ghost {
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ghost::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    100% { left: 100%; }
+}
+
+/* Loader */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--glass-border);
+    border-top: 3px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}

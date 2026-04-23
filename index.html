@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가양동 실시간 날씨 모니터링 - ChoiGPT Corp.</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <main class="app-container">
+        <!-- Header Section -->
+        <header class="glass-header">
+            <div class="location-info">
+                <h1>대전광역시 동구 가양동</h1>
+                <p id="current-date">로딩 중...</p>
+            </div>
+            <div class="status-indicator">
+                <span class="dot"></span>
+                <span>실시간 라이브</span>
+            </div>
+        </header>
+
+        <!-- Main Weather Card -->
+        <section class="main-card glass-panel">
+            <div class="weather-main">
+                <div class="temp-group">
+                    <span id="current-temp">--</span>
+                    <span class="unit">°C</span>
+                </div>
+                <div class="condition-group">
+                    <div id="weather-icon-large">
+                        <i data-lucide="sun"></i>
+                    </div>
+                    <p id="weather-description">날씨 정보를 가져오는 중...</p>
+                </div>
+            </div>
+            <div class="weather-details">
+                <div class="detail-item">
+                    <i data-lucide="cloud-rain"></i>
+                    <span class="label">강수량</span>
+                    <span id="precipitation">-- mm</span>
+                </div>
+                <div class="detail-item">
+                    <i data-lucide="droplets"></i>
+                    <span class="label">습도</span>
+                    <span id="humidity">-- %</span>
+                </div>
+                <div class="detail-item">
+                    <i data-lucide="wind"></i>
+                    <span class="label">풍속</span>
+                    <span id="wind-speed">-- m/s</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forecast Section -->
+        <section class="forecast-container">
+            <h2 class="section-title">오늘의 예보</h2>
+            <div class="forecast-grid" id="hourly-forecast">
+                <!-- Hourly items will be injected here -->
+                <div class="forecast-item glass-panel ghost"></div>
+                <div class="forecast-item glass-panel ghost"></div>
+                <div class="forecast-item glass-panel ghost"></div>
+                <div class="forecast-item glass-panel ghost"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 ChoiGPT Corp. Premium Weather Intelligence.</p>
+        </footer>
+    </main>
+
+    <!-- Error/Loading Overlay -->
+    <div id="loader" class="overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
