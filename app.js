@@ -63,10 +63,11 @@ function updateUI(data) {
     const iconContainer = document.getElementById('weather-icon-large');
     iconContainer.innerHTML = `<i data-lucide="${weatherInfo.icon}"></i>`;
     
-    // 상세 정보 (Mockup or additional API fields if needed)
+    // 상세 정보 (현재 시간의 데이터 추출)
+    const currentHour = new Date().getHours();
     document.getElementById('wind-speed').innerText = `${current.windspeed} km/h`;
-    document.getElementById('humidity').innerText = `${data.hourly.precipitation_probability[0]}%`; // Open-Meteo는 강수확률로 대체 가능
-    document.getElementById('precipitation').innerText = `0.0 mm`; 
+    document.getElementById('humidity').innerText = `${data.hourly.precipitation_probability[currentHour]}%`; 
+    document.getElementById('precipitation').innerText = `${data.hourly.precipitation_probability[currentHour] > 50 ? 'Rainy' : '0.0'} mm`; 
 
     // 날짜 업데이트
     const now = new Date();
@@ -79,11 +80,14 @@ function updateUI(data) {
 
     // 향후 4시간 예보
     for (let i = 1; i <= 4; i++) {
+        const index = currentHour + i;
+        if (index >= data.hourly.temperature_2m.length) break;
+
         const hourTime = new Date();
         hourTime.setHours(hourTime.getHours() + i);
         const hourLabel = hourTime.getHours() + '시';
-        const hourTemp = Math.round(data.hourly.temperature_2m[i]);
-        const hourCode = data.hourly.weathercode[i];
+        const hourTemp = Math.round(data.hourly.temperature_2m[index]);
+        const hourCode = data.hourly.weathercode[index];
         const hourInfo = WEATHER_MAP[hourCode] || { icon: 'cloud' };
 
         const item = document.createElement('div');
